@@ -8,6 +8,7 @@
   },
   "scripts": {
     "start": "webpack serve --mode=development",
+    "build": "webpack --mode=production",
     "predeploy": "npm run build",
     "deoloy": "gh-pages -d build",
     "lint": "npx eslint ./src --ext .js,.jsx --fix"
