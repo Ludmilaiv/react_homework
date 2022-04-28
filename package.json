@@ -9,7 +9,8 @@
   "scripts": {
     "start": "webpack serve --mode=development",
     "predeploy": "npm run build",
-    "deoloy": "gh-pages -d build"
+    "deoloy": "gh-pages -d build",
+    "lint": "npx eslint ./src --ext .js,.jsx --fix"
   },
   "eslintConfig": {
     "extends": [
@@ -35,6 +36,9 @@
     "@babel/preset-react": "^7.16.7",
     "babel-loader": "^8.2.5",
     "css-loader": "^6.7.1",
+    "eslint": "^8.14.0",
+    "eslint-plugin-jest": "^26.1.5",
+    "eslint-plugin-react": "^7.29.4",
     "file-loader": "^6.2.0",
     "html-webpack-plugin": "^5.5.0",
     "node-sass": "^7.0.1",
