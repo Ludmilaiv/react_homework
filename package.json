@@ -1,4 +1,5 @@
 {
+  "homepage": "https://ludmilaiv.github.io/react_homework/",
   "name": "react-homework",
   "version": "0.1.0",
   "private": true,
@@ -9,7 +10,9 @@
   "scripts": {
     "start": "webpack serve --mode=development",
     "build": "webpack --mode=production",
-    "lint": "npx eslint ./src --ext .js,.jsx --fix"
+    "lint": "npx eslint ./src --ext .js,.jsx --fix",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": [
@@ -39,6 +42,7 @@
     "eslint-plugin-jest": "^26.1.5",
     "eslint-plugin-react": "^7.29.4",
     "file-loader": "^6.2.0",
+    "gh-pages": "^3.2.3",
     "html-webpack-plugin": "^5.5.0",
     "node-sass": "^7.0.1",
     "sass": "^1.51.0",
