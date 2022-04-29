@@ -1,21 +1,18 @@
 {
+  "homepage": "https://ludmilaiv.github.io/react_homework/",
   "name": "react-homework",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@testing-library/jest-dom": "^5.16.4",
-    "@testing-library/react": "^13.1.1",
-    "@testing-library/user-event": "^13.5.0",
     "react": "^18.0.0",
-    "react-dom": "^18.0.0",
-    "react-scripts": "5.0.1",
-    "web-vitals": "^2.1.4"
+    "react-dom": "^18.0.0"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "start": "webpack serve --mode=development",
+    "build": "webpack --mode=production",
+    "lint": "npx eslint ./src --ext .js,.jsx --fix",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": [
@@ -36,6 +33,23 @@
     ]
   },
   "devDependencies": {
-    "node-sass": "^7.0.1"
+    "@babel/core": "^7.17.9",
+    "@babel/preset-env": "^7.16.11",
+    "@babel/preset-react": "^7.16.7",
+    "babel-loader": "^8.2.5",
+    "css-loader": "^6.7.1",
+    "eslint": "^8.14.0",
+    "eslint-plugin-jest": "^26.1.5",
+    "eslint-plugin-react": "^7.29.4",
+    "file-loader": "^6.2.0",
+    "gh-pages": "^3.2.3",
+    "html-webpack-plugin": "^5.5.0",
+    "node-sass": "^7.0.1",
+    "sass": "^1.51.0",
+    "sass-loader": "^12.6.0",
+    "style-loader": "^3.3.1",
+    "webpack": "^5.72.0",
+    "webpack-cli": "^4.9.2",
+    "webpack-dev-server": "^4.8.1"
   }
 }
