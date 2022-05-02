@@ -1,7 +1,14 @@
-import { useState } from 'react';
+import { useState, FC } from 'react';
 import './style.sass';
 
-export const MessageFunction = ({messageList, setMessageList}) => {
+type Message = {text: string; author: string};
+
+interface MessageProps {
+  messageList: Message[];
+  setMessageList: (messageList: Message[]) => void;
+}
+
+export const MessageFunction: FC<MessageProps> = ({messageList, setMessageList}) => {
   const [textValue, setTextValue] = useState('');
   const [author, setAuthor] = useState('');
 
