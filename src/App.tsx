@@ -2,10 +2,10 @@ import { useState, useEffect, useCallback } from 'react';
 import { nanoid } from 'nanoid';
 import { AUTHOR } from './constants';
 
-import { MessageFunction } from './components/message-function';
-import { ShowMessageFunction } from './components/show-message-function';
-import { MessageClass } from './components/message-class';
-import { ShowMessageClass } from './components/show-message-class';
+import { MessageFormFunction } from './components/message-form-function';
+import { MessageListFunction } from './components/message-list-function';
+import { MessageFormClass } from './components/message-form-class';
+import { MessageListClass } from './components/message-list-class';
 import { TAuthor, TMessages } from './types';
 
 import './App.sass';
@@ -42,13 +42,13 @@ function App() {
     <div className="app">
       <div className="app__container">
         <h2>Функциональные компоненты</h2>
-        <MessageFunction addMessage={addMessage1}/>
-        <ShowMessageFunction messageList={messageList1}/>
+        <MessageFormFunction addMessage={addMessage1}/>
+        <MessageListFunction messageList={messageList1}/>
       </div>
       <div className="app__container">
         <h2>Классовые компоненты</h2>
-        <MessageClass addMessage={addMessage2}/>
-        <ShowMessageClass messageList={messageList2}/>
+        <MessageFormClass addMessage={addMessage2}/>
+        <MessageListClass messageList={messageList2}/>
       </div>
     </div>
   );

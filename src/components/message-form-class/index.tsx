@@ -3,7 +3,7 @@ import './style.sass';
 import { IMessageProps, IMessageState } from './interface';
 import { AUTHOR } from '../../constants';
 
-export class MessageClass extends Component<IMessageProps, IMessageState> {
+export class MessageFormClass extends Component<IMessageProps, IMessageState> {
 
   constructor(props: IMessageProps) {
     super(props);
