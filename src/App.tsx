@@ -4,10 +4,11 @@ import { MessageFunction } from './components/message-function';
 import { ShowMessageFunction } from './components/show-message-function';
 import { MessageClass } from './components/message-class';
 import { ShowMessageClass } from './components/show-message-class';
+import { TMessages } from './types';
 
 function App() {
-  const [messageList1, setMessageList1] = useState([]);
-  const [messageList2, setMessageList2] = useState([]);
+  const [messageList1, setMessageList1] = useState<TMessages>([]);
+  const [messageList2, setMessageList2] = useState<TMessages>([]);
 
   useEffect(() => {
     if (messageList1.length === 0 || messageList1[0].author === 'bot') return;

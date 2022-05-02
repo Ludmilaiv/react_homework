@@ -1,6 +1,7 @@
 import { Component } from 'react';
+import { IShowMessageProps } from './interface';
 
-export class ShowMessageClass extends Component {
+export class ShowMessageClass extends Component<IShowMessageProps> {
   render() {
     return <ul className='app__message-list'>{this.props.messageList.map((elem, index) => (
       //TODO Индекс массива в качестве ключа - это не очень хорошая практика. Это временно, пока у сообщений нет ID 

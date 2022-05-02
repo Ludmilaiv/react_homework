@@ -1,4 +1,7 @@
-export const ShowMessageFunction = ({messageList}) => {
+import { FC } from 'react';
+import { IShowMessageProps } from './interface';
+
+export const ShowMessageFunction: FC<IShowMessageProps> = ({messageList}) => {
   return <ul className='app__message-list'>{messageList.map((elem, index) => (
     //TODO Индекс массива в качестве ключа - это не очень хорошая практика. Это временно, пока у сообщений нет ID 
     <li key={index}>

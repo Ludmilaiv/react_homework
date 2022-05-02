@@ -1,9 +1,10 @@
 import { Component } from 'react';
 import './style.sass';
+import { IMessageProps, IMessageState } from './interface';
 
-export class MessageClass extends Component {
+export class MessageClass extends Component<IMessageProps, IMessageState> {
 
-  constructor(props) {
+  constructor(props: IMessageProps) {
     super(props);
     this.state = {textValue: '', author: ''};
   }
