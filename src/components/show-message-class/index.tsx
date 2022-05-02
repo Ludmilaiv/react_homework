@@ -5,7 +5,7 @@ export class ShowMessageClass extends Component<IShowMessageProps> {
   render() {
     return <ul className='app__message-list'>{this.props.messageList.map(elem => (
       <li key={elem.id}>
-        <b>{elem.author}: </b><span>{elem.text}</span>
+        <b>{elem.authorName}: </b><span>{elem.text}</span>
       </li>
     ))}</ul>;
   }
