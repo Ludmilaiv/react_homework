@@ -18,7 +18,10 @@
     "build-storybook": "build-storybook",
     "test": "jest",
     "test:watch": "jest --watch",
-    "test:coverage": "jest --coverage --colors"
+    "test:coverage": "jest --coverage --colors",
+    "loki:update": "npm run build-storybook && loki update --requireReference --reactUri file:./storybook-static",
+    "loki:approve": "loki approve",
+    "loki:test": "npm run build-storybook && loki test --requireReference --reactUri file:./storybook-static"
   },
   "eslintConfig": {
     "extends": [
@@ -72,9 +75,11 @@
     "gh-pages": "^3.2.3",
     "html-webpack-plugin": "^5.5.0",
     "husky": "^4.3.8",
+    "identity-obj-proxy": "^3.0.0",
     "jest": "^28.0.3",
     "jest-dom": "^4.0.0",
     "jest-environment-jsdom": "^28.0.2",
+    "loki": "^0.29.0",
     "nanoid": "^3.3.3",
     "node-sass": "^7.0.1",
     "sass": "^1.51.0",
@@ -90,6 +95,21 @@
     "hooks": {
       "pre-commit": "npm run lint",
       "pre-push": "npm run lint && npm test"
+    }
+  },
+  "loki": {
+    "configurations": {
+      "chrome.laptop": {
+        "target": "chrome.app",
+        "width": 1366,
+        "height": 768,
+        "deviceScaleFactor": 1,
+        "mobile": false
+      },
+      "chrome.iphone7": {
+        "target": "chrome.app",
+        "preset": "iPhone 7"
+      }
     }
   }
 }

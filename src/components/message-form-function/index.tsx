@@ -9,13 +9,13 @@ export const MessageFormFunction: FC<IMessageProps> = memo<IMessageProps>(({addM
   const [textValue, setTextValue] = useState('');
   const [author, setAuthor] = useState('');
 
-  return <form className="app__message message-function" action='' onSubmit={e => {
+  return <form className="app__message message-function" role='form' action='' onSubmit={e => {
     e.preventDefault();
     addMessage(textValue, AUTHOR.USER, author);
     setTextValue('');
     setAuthor('');
   }}>
-    <input placeholder="Автор" className="app__input message-function__input" type="text" value={author} onChange={e => setAuthor(e.target.value)}/>
+    <Input placeholder="Автор" className="app__input message-function__input" value={author} onChange={e => setAuthor(e.target.value)}/>
     <Input 
       placeholder="Сообщение" 
       className="app__input message-function__input" 
