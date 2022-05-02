@@ -1,8 +1,7 @@
-import { TMessages } from '../../types';
+import { TAuthor } from '../../types';
 
 export interface IMessageProps {
-  messageList: TMessages;
-  setMessageList: (messageList: TMessages) => void;
+  addMessage: (text: string, author: TAuthor, authorName: string) => void;
 }
 
 export interface IMessageState {

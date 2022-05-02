@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { nanoid } from 'nanoid';
 import { AUTHOR } from './constants';
 
@@ -6,7 +6,7 @@ import { MessageFunction } from './components/message-function';
 import { ShowMessageFunction } from './components/show-message-function';
 import { MessageClass } from './components/message-class';
 import { ShowMessageClass } from './components/show-message-class';
-import { TMessages } from './types';
+import { TAuthor, TMessages } from './types';
 
 import './App.sass';
 
@@ -30,16 +30,24 @@ function App() {
     return () => clearTimeout(timeout);
   }, [messageList2]);
 
+  const addMessage1 = useCallback((text: string, author: TAuthor, authorName: string) => {
+    setMessageList1((prevMessage) => [{text, author, authorName, id: nanoid()}, ...prevMessage]);
+  }, []);
+
+  const addMessage2 = (text: string, author: TAuthor, authorName: string) => {
+    setMessageList2([{text, author, authorName, id: nanoid()}, ...messageList2]);
+  };
+
   return (
     <div className="app">
       <div className="app__container">
         <h2>Функциональные компоненты</h2>
-        <MessageFunction messageList={messageList1} setMessageList={setMessageList1}/>
+        <MessageFunction addMessage={addMessage1}/>
         <ShowMessageFunction messageList={messageList1}/>
       </div>
       <div className="app__container">
         <h2>Классовые компоненты</h2>
-        <MessageClass messageList={messageList2} setMessageList={setMessageList2}/>
+        <MessageClass addMessage={addMessage2}/>
         <ShowMessageClass messageList={messageList2}/>
       </div>
     </div>
