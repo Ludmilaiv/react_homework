@@ -8,8 +8,21 @@ import { MessageFormClass } from './components/message-form-class';
 import { MessageListClass } from './components/message-list-class';
 import { ChatList } from './components/chat-list';
 import { TAuthor, TMessages, TChats } from './types';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { orange } from '@mui/material/colors';
 
 import './App.sass';
+
+const theme = createTheme({
+  palette: {
+    primary: {
+      main: orange[400],
+    },
+    secondary: {
+      main: orange[200],
+    },
+  },
+});
 
 const chats: TChats = [
   {id: 'chat1', name: 'My chat 1'},
@@ -48,24 +61,24 @@ function App() {
   };
 
   return (
-    <div className="app">
-      <div className="app__container">
-        <h2>Функциональные компоненты</h2>
-        <MessageFormFunction addMessage={addMessage1}/>
-        <div className='app__chat-wrp'>
-          <ChatList chats={chatList} />
-          <MessageListFunction messageList={messageList1}/>
+    <ThemeProvider theme={theme}>
+      <div className="app">
+        <div className="app__container">
+          <h2>Функциональные компоненты</h2>
+          <MessageFormFunction addMessage={addMessage1}/>
+          <div className='app__chat-wrp'>
+            <ChatList chats={chatList} />
+            <MessageListFunction messageList={messageList1}/>
+          </div>
+          
         </div>
-        
+        <div className="app__container">
+          <h2>Классовые компоненты</h2>
+          <MessageFormClass addMessage={addMessage2}/>
+          <MessageListClass messageList={messageList2}/>
+        </div>
       </div>
-      <div className="app__container">
-        <h2>Классовые компоненты</h2>
-        <MessageFormClass addMessage={addMessage2}/>
-        <MessageListClass messageList={messageList2}/>
-
-        
-      </div>
-    </div>
+    </ThemeProvider>
   );
 }
 
