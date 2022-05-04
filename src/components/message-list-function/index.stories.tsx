@@ -1,5 +1,5 @@
 import { MessageListFunction } from '.';
-import { IShowMessageProps } from './interface';
+import { IShowMessageListProps } from './interface';
 import { Story } from '@storybook/react';
 import { AUTHOR } from '../../constants';
 
@@ -8,7 +8,7 @@ export default {
   component: MessageListFunction,
 };
 
-const Template: Story<IShowMessageProps> = (args) => <MessageListFunction {...args} />;
+const Template: Story<IShowMessageListProps> = (args) => <MessageListFunction {...args} />;
 
 export const Primary = Template.bind({});
 Primary.args = {

@@ -6,13 +6,22 @@ import { MessageFormFunction } from './components/message-form-function';
 import { MessageListFunction } from './components/message-list-function';
 import { MessageFormClass } from './components/message-form-class';
 import { MessageListClass } from './components/message-list-class';
-import { TAuthor, TMessages } from './types';
+import { ChatList } from './components/chat-list';
+import { TAuthor, TMessages, TChats } from './types';
 
 import './App.sass';
+
+const chats: TChats = [
+  {id: 'chat1', name: 'My chat 1'},
+  {id: 'chat2', name: 'My chat 2'},
+  {id: 'chat3', name: 'My chat 3'}
+];
 
 function App() {
   const [messageList1, setMessageList1] = useState<TMessages>([]);
   const [messageList2, setMessageList2] = useState<TMessages>([]);
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const [chatList, setChatList] = useState(chats);
 
   useEffect(() => {
     if (messageList1.length === 0 || messageList1[0].author === AUTHOR.BOT) return;
@@ -43,12 +52,18 @@ function App() {
       <div className="app__container">
         <h2>Функциональные компоненты</h2>
         <MessageFormFunction addMessage={addMessage1}/>
-        <MessageListFunction messageList={messageList1}/>
+        <div className='app__chat-wrp'>
+          <ChatList chats={chatList} />
+          <MessageListFunction messageList={messageList1}/>
+        </div>
+        
       </div>
       <div className="app__container">
         <h2>Классовые компоненты</h2>
         <MessageFormClass addMessage={addMessage2}/>
         <MessageListClass messageList={messageList2}/>
+
+        
       </div>
     </div>
   );

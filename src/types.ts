@@ -5,4 +5,11 @@ type TMessage = {
   author: TAuthor; 
   id: string
 };
+
+type TChat = {
+  name: string; 
+  id: string
+};
+
 export type TMessages = TMessage[];
+export type TChats = TChat[];
