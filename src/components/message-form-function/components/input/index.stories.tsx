@@ -7,7 +7,7 @@ export default {
   component: Input,
   argTypes: {
     onChange: { action: 'change' },
-  }
+  },
 };
 
 const Template: Story<IInputProps> = (args) => <Input {...args} />;

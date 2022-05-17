@@ -6,6 +6,8 @@
         "jest": true
     },
     "extends": [
+        "prettier",
+        "plugin:prettier/recommended",
         "eslint:recommended",
         "plugin:react/recommended",
         "plugin:@typescript-eslint/eslint-recommended", 
@@ -22,6 +24,7 @@
     },
     "plugins": [
         "react",
+        "prettier",
         "react-hooks",
         "jest"
     ],
@@ -29,6 +32,15 @@
         "react/react-in-jsx-scope": 0,
         "react/prop-types": 0,
         "react/display-name": 0,
+        "prettier/prettier": [
+            "error",
+            {
+              "singleQuote": true,
+              "endOfLine": "auto"
+            }
+          ],
+        "no-var": "error",
+        "prefer-rest-params": "warn",
         "indent": [
             "error",
             2
@@ -45,5 +57,18 @@
             "error",
             "always"
         ]
-    }
+    },
+    "settings": {
+        "react": {
+          "version": "detect"
+        }
+    },
+    "overrides": [
+        {
+          "files": ["webpack.config.js"],
+          "rules": {
+            "@typescript-eslint/no-var-requires": ["off"]
+          }
+        }
+      ]
 }

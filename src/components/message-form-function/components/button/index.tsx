@@ -1,8 +1,16 @@
 import { FC } from 'react';
 import { IButtonProps } from './interface';
+import ButtonUI from '@mui/material/Button';
 
-export const Button: FC<IButtonProps> = ({className, content, type, disabled, onClick}) => {
-  return <button style={{borderRadius: '3'}} className={className} disabled={disabled} onClick={onClick} type={type}>
-    {content}
-  </button>;
+export const Button: FC<IButtonProps> = ({ content, disabled, onClick }) => {
+  return (
+    <ButtonUI
+      type="submit"
+      onClick={onClick}
+      disabled={disabled}
+      variant="contained"
+    >
+      {content}
+    </ButtonUI>
+  );
 };
