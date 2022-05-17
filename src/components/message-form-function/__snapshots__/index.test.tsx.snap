@@ -1,0 +1,31 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`MessageFormFunction render with snapshot 1`] = `
+<DocumentFragment>
+  <form
+    action=""
+    class="app__message message-function"
+    role="form"
+  >
+    <input
+      class="app__input message-function__input"
+      placeholder="Автор"
+      type="text"
+      value=""
+    />
+    <input
+      class="app__input message-function__input"
+      placeholder="Сообщение"
+      type="text"
+      value=""
+    />
+    <button
+      class="message-function__button"
+      disabled=""
+      style="border-radius: 3;"
+    >
+      Отправить
+    </button>
+  </form>
+</DocumentFragment>
+`;

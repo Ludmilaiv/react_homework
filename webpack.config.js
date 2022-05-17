@@ -1,21 +1,22 @@
+/* eslint-disable @typescript-eslint/no-var-requires */
 /* eslint-disable no-undef */
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
-  entry: path.resolve(__dirname, './src/index.jsx'),
+  entry: path.resolve(__dirname, './src/index.tsx'),
   output: {
     filename: 'bundle.js',
     path: path.resolve(__dirname, './build'),
   },
   resolve: {
-    extensions: ['.jsx', '.js']
+    extensions: ['.jsx', '.js', '.tsx', '.ts']
   },
   devtool: 'eval-source-map',
   module: {
     rules: [
       {
-        test: /\.jsx?$/,
+        test: /\.(j|t)sx?$/,
         exclude: /node_modules/,
         use: ['babel-loader'],
       },

@@ -1,11 +1,17 @@
 {
     "env": {
         "browser": true,
-        "es2021": true
+        "es6": true,
+        "node": true,
+        "jest": true
     },
     "extends": [
         "eslint:recommended",
-        "plugin:react/recommended"
+        "plugin:react/recommended",
+        "plugin:@typescript-eslint/eslint-recommended", 
+        "plugin:@typescript-eslint/recommended",
+        "plugin:react-hooks/recommended",
+        "plugin:storybook/recommended"
     ],
     "parserOptions": {
         "ecmaFeatures": {
@@ -15,11 +21,14 @@
         "sourceType": "module"
     },
     "plugins": [
-        "react"
+        "react",
+        "react-hooks",
+        "jest"
     ],
     "rules": {
         "react/react-in-jsx-scope": 0,
         "react/prop-types": 0,
+        "react/display-name": 0,
         "indent": [
             "error",
             2
