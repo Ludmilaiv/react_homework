@@ -8,17 +8,23 @@ describe('ChatList', () => {
   });
 
   it('render list', () => {
-    const { asFragment } = render(<ChatList chats={[
-      {id: '2', name: 'chat1'}, 
-      {id: '1', name: 'chat2'}]} />);
+    const { asFragment } = render(
+      <ChatList
+        chats={[
+          { id: '2', name: 'chat1' },
+          { id: '1', name: 'chat2' },
+        ]}
+      />
+    );
     expect(asFragment()).toMatchSnapshot();
   });
 
   it('render multiply components', () => {
-    render(<>
-      <ChatList chats={[]} />
-      <ChatList chats={[]} />
-    </>
+    render(
+      <>
+        <ChatList chats={[]} />
+        <ChatList chats={[]} />
+      </>
     );
 
     expect(screen.queryAllByRole('list').length).toBe(2);

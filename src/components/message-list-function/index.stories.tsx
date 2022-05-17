@@ -8,12 +8,24 @@ export default {
   component: MessageListFunction,
 };
 
-const Template: Story<IShowMessageListProps> = (args) => <MessageListFunction {...args} />;
+const Template: Story<IShowMessageListProps> = (args) => (
+  <MessageListFunction {...args} />
+);
 
 export const Primary = Template.bind({});
 Primary.args = {
   messageList: [
-    {id: '222', author: AUTHOR.USER, authorName: 'Bot', text: 'Example text 2'},
-    {id: '111', author: AUTHOR.USER, authorName: 'Andrew', text: 'Example text 1'},
+    {
+      id: '222',
+      author: AUTHOR.USER,
+      authorName: 'Bot',
+      text: 'Example text 2',
+    },
+    {
+      id: '111',
+      author: AUTHOR.USER,
+      authorName: 'Andrew',
+      text: 'Example text 1',
+    },
   ],
 };

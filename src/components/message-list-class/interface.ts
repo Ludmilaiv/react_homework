@@ -1,5 +1,5 @@
-import { TMessages } from '../../types';
+import { Messages } from '../../types';
 
 export interface IShowMessageProps {
-  messageList: TMessages;
+  messageList: Messages;
 }

@@ -7,7 +7,7 @@ export default {
   component: Button,
   argTypes: {
     onClick: { action: 'click' },
-  }
+  },
 };
 
 const Template: Story<IButtonProps> = (args) => <Button {...args} />;
@@ -19,7 +19,7 @@ Primary.args = {
 };
 
 export const Disabled = Template.bind({});
-Disabled.args= {
+Disabled.args = {
   content: 'not click',
   disabled: true,
 };
