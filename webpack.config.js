@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/no-var-requires */
-/* eslint-disable no-undef */
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
@@ -10,7 +8,7 @@ module.exports = {
     path: path.resolve(__dirname, './build'),
   },
   resolve: {
-    extensions: ['.jsx', '.js', '.tsx', '.ts']
+    extensions: ['.jsx', '.js', '.tsx', '.ts'],
   },
   devtool: 'eval-source-map',
   module: {
@@ -22,17 +20,13 @@ module.exports = {
       },
       {
         test: /\.s[ac]ss?$/i,
-        use: [
-          'style-loader',
-          'css-loader',
-          'sass-loader'
-        ],
+        use: ['style-loader', 'css-loader', 'sass-loader'],
       },
-    ]
+    ],
   },
   plugins: [
     new HtmlWebpackPlugin({
       template: './public/index.html',
     }),
-  ]
+  ],
 };

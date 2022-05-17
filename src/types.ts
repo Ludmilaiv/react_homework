@@ -1,15 +1,15 @@
-export type TAuthor = 'bot' | 'user';
-type TMessage = {
-  text: string; 
-  authorName: string; 
-  author: TAuthor; 
-  id: string
+export type Author = 'bot' | 'user';
+type Message = {
+  text: string;
+  authorName: string;
+  author: Author;
+  id: string;
 };
 
-type TChat = {
-  name: string; 
-  id: string
+type Chat = {
+  name: string;
+  id: string;
 };
 
-export type TMessages = TMessage[];
-export type TChats = TChat[];
+export type Messages = Message[];
+export type Chats = Chat[];

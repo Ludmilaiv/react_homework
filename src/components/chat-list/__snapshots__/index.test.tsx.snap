@@ -2,35 +2,56 @@
 
 exports[`ChatList render list 1`] = `
 <DocumentFragment>
-  <ul
-    class="MuiList-root MuiList-padding css-h4y409-MuiList-root"
-  >
-    <li
-      class="MuiListItem-root MuiListItem-gutters MuiListItem-padding css-1p823my-MuiListItem-root"
+  <div>
+    <ul
+      class="MuiList-root MuiList-padding css-h4y409-MuiList-root"
     >
-      <div
-        class="MuiListItemText-root css-tlelie-MuiListItemText-root"
+      <li
+        class="MuiListItem-root MuiListItem-gutters MuiListItem-padding css-1p823my-MuiListItem-root"
       >
-        <span
-          class="MuiTypography-root MuiTypography-body1 MuiListItemText-primary css-10hburv-MuiTypography-root"
+        <div
+          class="MuiListItemText-root css-tlelie-MuiListItemText-root"
         >
-          chat1
-        </span>
-      </div>
-    </li>
-    <li
-      class="MuiListItem-root MuiListItem-gutters MuiListItem-padding css-1p823my-MuiListItem-root"
-    >
-      <div
-        class="MuiListItemText-root css-tlelie-MuiListItemText-root"
+          <span
+            class="MuiTypography-root MuiTypography-body1 MuiListItemText-primary css-10hburv-MuiTypography-root"
+          >
+            <a
+              href="/chats/2"
+            >
+              chat1
+            </a>
+          </span>
+        </div>
+      </li>
+      <li
+        class="MuiListItem-root MuiListItem-gutters MuiListItem-padding css-1p823my-MuiListItem-root"
       >
-        <span
-          class="MuiTypography-root MuiTypography-body1 MuiListItemText-primary css-10hburv-MuiTypography-root"
+        <div
+          class="MuiListItemText-root css-tlelie-MuiListItemText-root"
         >
-          chat2
-        </span>
-      </div>
-    </li>
-  </ul>
+          <span
+            class="MuiTypography-root MuiTypography-body1 MuiListItemText-primary css-10hburv-MuiTypography-root"
+          >
+            <a
+              href="/chats/1"
+            >
+              chat2
+            </a>
+          </span>
+        </div>
+      </li>
+    </ul>
+    <form>
+      <input
+        type="text"
+        value=""
+      />
+      <button
+        type="submit"
+      >
+        Add chat
+      </button>
+    </form>
+  </div>
 </DocumentFragment>
 `;

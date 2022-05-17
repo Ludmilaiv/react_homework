@@ -1,4 +1,4 @@
-import { Chats } from '../../types';
+import { Chats } from '../types';
 
 export interface IShowChatListProps {
   chats: Chats;

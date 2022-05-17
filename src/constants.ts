@@ -1,3 +1,6 @@
-import { TAuthor } from './types';
+import { Author } from './types';
 
-export const AUTHOR: { BOT: TAuthor, USER: TAuthor } = {BOT: 'bot', USER: 'user'}; 
+export const AUTHOR: { BOT: Author; USER: Author } = {
+  BOT: 'bot',
+  USER: 'user',
+};
