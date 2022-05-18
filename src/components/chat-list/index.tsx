@@ -12,13 +12,10 @@ export const ChatList: FC<IShowChatListProps> = ({ chats, onAddChat }) => {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (name) {
-      onAddChat([
-        ...chats,
-        {
-          id: nanoid(),
-          name: name,
-        },
-      ]);
+      onAddChat({
+        id: nanoid(),
+        name: name,
+      });
       setName('');
     }
   };

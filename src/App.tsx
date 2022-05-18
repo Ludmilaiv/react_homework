@@ -1,22 +1,42 @@
-import { FC, useState } from 'react';
+import { FC, useState, useMemo } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { Wrapper } from './components/wrapper';
 import { ChatList } from './components/chat-list';
-import { Chats } from './types';
+import { Chat } from './types';
+import { AUTHOR } from './constants';
 
 import './App.sass';
 import { Home } from './pages/Home';
 import { Profile } from './pages/Profile';
-import { ChatsPage } from './pages/ChatsPage';
+import { ChatPage } from './pages/ChatPage';
+import { IMessages } from './components/chat-list/interface';
+import { nanoid } from 'nanoid';
 
-const initialChats: Chats = [
-  { id: 'chat1', name: 'My chat 1' },
-  { id: 'chat2', name: 'My chat 2' },
-  { id: 'chat3', name: 'My chat 3' },
-];
+const initialMessage: IMessages = {
+  default: [
+    {
+      id: '1',
+      author: AUTHOR.USER,
+      authorName: 'Default',
+      text: 'Hello, Geekbrains',
+    },
+  ],
+};
 
 export const App: FC = () => {
-  const [chatList, setChatList] = useState(initialChats);
+  const [messages, setMessages] = useState(initialMessage);
+
+  const chatList = useMemo(() => {
+    return Object.entries(messages).map((elem) => ({
+      id: nanoid(),
+      name: elem[0],
+    }));
+  }, [Object.entries(messages).length]);
+
+  const onAddChat = (chat: Chat) => {
+    setMessages({ ...messages, [chat.name]: [] });
+  };
+
   return (
     <div className="app">
       <BrowserRouter>
@@ -27,11 +47,18 @@ export const App: FC = () => {
             <Route path="chats">
               <Route
                 index
-                element={<ChatList chats={chatList} onAddChat={setChatList} />}
+                element={<ChatList chats={chatList} onAddChat={onAddChat} />}
               />
               <Route
                 path=":chatId"
-                element={<ChatsPage chats={chatList} onAddChat={setChatList} />}
+                element={
+                  <ChatPage
+                    chats={chatList}
+                    onAddChat={onAddChat}
+                    messages={messages}
+                    setMessages={setMessages}
+                  />
+                }
               />
             </Route>
           </Route>

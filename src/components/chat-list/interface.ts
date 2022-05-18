@@ -1,6 +1,10 @@
-import { Chats } from '../../types';
+import { Chats, Chat, Messages } from '../../types';
 
 export interface IShowChatListProps {
   chats: Chats;
-  onAddChat: (chats: Chats) => void;
+  onAddChat: (chats: Chat) => void;
+}
+
+export interface IMessages {
+  [key: string]: Messages;
 }
