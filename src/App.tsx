@@ -1,5 +1,6 @@
 import { FC, useState, useMemo } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { Provider } from 'react-redux';
 import { Wrapper } from './components/wrapper';
 import { ChatList } from './components/chat-list';
 import { Chat } from './types';
@@ -10,6 +11,7 @@ import { Profile } from './pages/Profile';
 import { ChatPage } from './pages/ChatPage/ChatPage';
 import { IMessages } from './components/chat-list/interface';
 import { defaultContext, ThemeContext } from './utils/ThemeContext';
+import { store } from './store';
 
 const initialMessage: IMessages = {
   defaultId: {
@@ -62,41 +64,45 @@ export const App: FC = () => {
   };
 
   return (
-    <ThemeContext.Provider
-      value={{
-        theme,
-        toggleTheme,
-      }}
-    >
-      <div className="app">
-        <BrowserRouter>
-          <Routes>
-            <Route path="/" element={<Wrapper />}>
-              <Route index element={<Home />} />
-              <Route path="profile" element={<Profile />} />
-              <Route path="chats">
-                <Route
-                  index
-                  element={<ChatList chats={chatList} onAddChat={onAddChat} />}
-                />
-                <Route
-                  path=":chatId"
-                  element={
-                    <ChatPage
-                      chats={chatList}
-                      onAddChat={onAddChat}
-                      onRemoveChat={onRemoveChat}
-                      messages={messages}
-                      setMessages={setMessages}
-                    />
-                  }
-                />
+    <Provider store={store}>
+      <ThemeContext.Provider
+        value={{
+          theme,
+          toggleTheme,
+        }}
+      >
+        <div className="app">
+          <BrowserRouter>
+            <Routes>
+              <Route path="/" element={<Wrapper />}>
+                <Route index element={<Home />} />
+                <Route path="profile" element={<Profile />} />
+                <Route path="chats">
+                  <Route
+                    index
+                    element={
+                      <ChatList chats={chatList} onAddChat={onAddChat} />
+                    }
+                  />
+                  <Route
+                    path=":chatId"
+                    element={
+                      <ChatPage
+                        chats={chatList}
+                        onAddChat={onAddChat}
+                        onRemoveChat={onRemoveChat}
+                        messages={messages}
+                        setMessages={setMessages}
+                      />
+                    }
+                  />
+                </Route>
               </Route>
-            </Route>
-            <Route path="*" element={<h1>Error 404</h1>} />
-          </Routes>
-        </BrowserRouter>
-      </div>
-    </ThemeContext.Provider>
+              <Route path="*" element={<h1>Error 404</h1>} />
+            </Routes>
+          </BrowserRouter>
+        </div>
+      </ThemeContext.Provider>
+    </Provider>
   );
 };
