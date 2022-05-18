@@ -6,7 +6,7 @@ type Message = {
   id: string;
 };
 
-type Chat = {
+export type Chat = {
   name: string;
   id: string;
 };

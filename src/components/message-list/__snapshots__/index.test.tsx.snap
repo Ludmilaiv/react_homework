@@ -1,0 +1,27 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`MessageList render list 1`] = `
+<DocumentFragment>
+  <ul
+    class="app__message-list"
+    role="list"
+  >
+    <li>
+      <b>
+        test bot: 
+      </b>
+      <span>
+        test text
+      </span>
+    </li>
+    <li>
+      <b>
+        test: 
+      </b>
+      <span>
+        test bot text
+      </span>
+    </li>
+  </ul>
+</DocumentFragment>
+`;
