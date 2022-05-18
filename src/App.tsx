@@ -4,7 +4,6 @@ import { Wrapper } from './components/wrapper';
 import { ChatList } from './components/chat-list';
 import { Chat } from './types';
 import { AUTHOR } from './constants';
-
 import './App.sass';
 import { Home } from './pages/Home';
 import { Profile } from './pages/Profile';
