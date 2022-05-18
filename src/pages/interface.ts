@@ -5,6 +5,7 @@ import { Chats, Chat } from '../types';
 export interface IShowChatListProps {
   chats: Chats;
   onAddChat: (chats: Chat) => void;
+  onRemoveChat: (chatName?: string) => void;
   messages: IMessages;
   setMessages: React.Dispatch<React.SetStateAction<IMessages>>;
 }

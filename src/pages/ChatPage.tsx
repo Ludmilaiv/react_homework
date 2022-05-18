@@ -24,70 +24,63 @@ const theme = createTheme({
 export const ChatPage: FC<IShowChatListProps> = ({
   chats,
   onAddChat,
+  onRemoveChat,
   messages,
   setMessages,
 }) => {
   const { chatId } = useParams();
-  const chatName = chats.find((el) => el.id === chatId)?.name;
 
   useEffect(() => {
     if (
-      !chatName ||
-      !messages[chatName] ||
-      messages[chatName].length === 0 ||
-      messages[chatName][0].author === AUTHOR.BOT
+      !chatId ||
+      !messages[chatId] ||
+      messages[chatId].messages.length === 0 ||
+      messages[chatId].messages[0].author === AUTHOR.BOT
     )
       return;
     const timeout = setTimeout(() => {
       setMessages({
         ...messages,
-        [chatName]: [
-          {
-            authorName: 'bot',
-            author: AUTHOR.BOT,
-            text: `Привет, ${messages[chatName][0].authorName}!`,
-            id: nanoid(),
-          },
-          ...messages[chatName],
-        ],
+        [chatId]: {
+          chatName: messages[chatId].chatName,
+          messages: [
+            {
+              authorName: 'bot',
+              author: AUTHOR.BOT,
+              text: `Привет, ${messages[chatId].messages[0].authorName}!`,
+              id: nanoid(),
+            },
+            ...messages[chatId].messages,
+          ],
+        },
       });
     }, 1500);
     return () => clearTimeout(timeout);
-  }, [messages, chatName]);
+  }, [messages, chatId]);
 
   const addMessage = useCallback(
     (text: string, author: Author, authorName: string) => {
-      if (!chatName) return;
-      if (!messages[chatName]) {
-        setMessages({
-          [chatName]: [
+      if (!chatId) return;
+      setMessages({
+        ...messages,
+        [chatId]: {
+          chatName: messages[chatId].chatName,
+          messages: [
             {
               authorName,
               author,
               text,
               id: nanoid(),
             },
+            ...messages[chatId].messages,
           ],
-        });
-        return;
-      }
-      setMessages({
-        ...messages,
-        [chatName]: [
-          {
-            authorName,
-            author,
-            text,
-            id: nanoid(),
-          },
-          ...messages[chatName],
-        ],
+        },
       });
     },
     [messages, chatId]
   );
 
-  if (chatName && !messages[chatName]) {
+  if (chatId && !messages[chatId]) {
     return <Navigate replace to="/chats" />;
   }
 
@@ -98,9 +91,14 @@ export const ChatPage: FC<IShowChatListProps> = ({
       <div className="app__chat-wrp">
         <ChatList chats={chats} onAddChat={onAddChat} />
         <MessageList
-          messageList={chatName && messages[chatName] ? messages[chatName] : []}
+          messageList={
+            chatId && messages[chatId] ? messages[chatId].messages : []
+          }
         />
       </div>
+      <button type="button" onClick={() => onRemoveChat(chatId)}>
+        Remove chat
+      </button>
     </ThemeProvider>
   );
 };

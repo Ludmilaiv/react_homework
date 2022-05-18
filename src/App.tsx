@@ -10,17 +10,19 @@ import { Home } from './pages/Home';
 import { Profile } from './pages/Profile';
 import { ChatPage } from './pages/ChatPage';
 import { IMessages } from './components/chat-list/interface';
-import { nanoid } from 'nanoid';
 
 const initialMessage: IMessages = {
-  default: [
-    {
-      id: '1',
-      author: AUTHOR.USER,
-      authorName: 'Default',
-      text: 'Hello, Geekbrains',
-    },
-  ],
+  defaultId: {
+    chatName: 'default',
+    messages: [
+      {
+        id: '1',
+        author: AUTHOR.USER,
+        authorName: 'Default',
+        text: 'Hello, Geekbrains',
+      },
+    ],
+  },
 };
 
 export const App: FC = () => {
@@ -28,13 +30,30 @@ export const App: FC = () => {
 
   const chatList = useMemo(() => {
     return Object.entries(messages).map((elem) => ({
-      id: nanoid(),
-      name: elem[0],
+      id: elem[0],
+      name: elem[1].chatName,
     }));
   }, [Object.entries(messages).length]);
 
   const onAddChat = (chat: Chat) => {
-    setMessages({ ...messages, [chat.name]: [] });
+    setMessages({
+      ...messages,
+      [chat.id]: { chatName: chat.name, messages: [] },
+    });
+  };
+
+  const onRemoveChat = (chatId?: string) => {
+    if (!chatId) return;
+    const newMessages: IMessages = {};
+    for (const key in messages) {
+      if (key !== chatId) {
+        newMessages[key] = {
+          chatName: messages[key].chatName,
+          messages: [...messages[key].messages],
+        };
+      }
+    }
+    setMessages(newMessages);
   };
 
   return (
@@ -55,6 +74,7 @@ export const App: FC = () => {
                   <ChatPage
                     chats={chatList}
                     onAddChat={onAddChat}
+                    onRemoveChat={onRemoveChat}
                     messages={messages}
                     setMessages={setMessages}
                   />

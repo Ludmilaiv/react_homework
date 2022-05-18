@@ -6,5 +6,5 @@ export interface IShowChatListProps {
 }
 
 export interface IMessages {
-  [key: string]: Messages;
+  [key: string]: { chatName: string; messages: Messages };
 }
