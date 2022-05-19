@@ -1,14 +1,18 @@
 import { FC, useEffect, useCallback } from 'react';
-import { MessageForm } from '../components/message-form';
-import { MessageList } from '../components/message-list';
-import { Author } from '../types';
-import { ChatList } from '../components/chat-list';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { nanoid } from 'nanoid';
-import { AUTHOR } from '../constants';
+
+import { MessageForm } from '../../components/message-form';
+import { MessageList } from '../../components/message-list';
+import { Author } from '../../types';
+import { ChatList } from '../../components/chat-list';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { AUTHOR } from '../../constants';
 import { orange } from '@mui/material/colors';
-import { IShowChatListProps } from './interface';
+import { IShowChatListProps } from '../interface';
 import { Navigate, useParams } from 'react-router-dom';
+import { WithClasses } from '../../HOC/WithClasses';
+
+import style from './ChatPage.module.css';
 
 const theme = createTheme({
   palette: {
@@ -29,7 +33,7 @@ export const ChatPage: FC<IShowChatListProps> = ({
   setMessages,
 }) => {
   const { chatId } = useParams();
-
+  const MessageListWithClass = WithClasses(MessageList);
   useEffect(() => {
     if (
       !chatId ||
@@ -90,10 +94,11 @@ export const ChatPage: FC<IShowChatListProps> = ({
       <MessageForm addMessage={addMessage} />
       <div className="app__chat-wrp">
         <ChatList chats={chats} onAddChat={onAddChat} />
-        <MessageList
+        <MessageListWithClass
           messageList={
             chatId && messages[chatId] ? messages[chatId].messages : []
           }
+          classes={style.border}
         />
       </div>
       <button type="button" onClick={() => onRemoveChat(chatId)}>

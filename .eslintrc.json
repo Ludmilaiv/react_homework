@@ -42,10 +42,6 @@
           ],
         "no-var": "error",
         "prefer-rest-params": "warn",
-        "indent": [
-            "error",
-            2
-        ],
         "linebreak-style": [
             "error",
             "windows"
@@ -68,7 +64,8 @@
         {
           "files": ["webpack.config.js"],
           "rules": {
-            "@typescript-eslint/no-var-requires": ["off"]
+            "@typescript-eslint/no-var-requires": ["off"],
+            "prettier/prettier": ["off"]
           }
         }
       ]

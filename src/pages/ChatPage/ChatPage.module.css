@@ -1,0 +1,7 @@
+.border {
+  border: rgb(255, 145, 0) 1px solid;
+  border-radius: 3px;
+  flex-grow: 1;
+  margin: 10px;
+  padding: 10px;
+}
