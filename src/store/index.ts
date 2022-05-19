@@ -1,5 +1,6 @@
-import { createStore, compose } from 'redux';
-import { profileReducer } from './profile/reducer';
+import { createStore, compose, combineReducers } from 'redux';
+import { chatReducer, ChatsState } from './chats/reducer';
+import { profileReducer, ProfileState } from './profile/reducer';
 
 declare const window: Window &
   typeof globalThis & {
@@ -9,4 +10,12 @@ declare const window: Window &
 export const composeEnhancers =
   window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
-export const store = createStore(profileReducer, composeEnhancers());
+export interface StoreState {
+  profile: ProfileState;
+  chats: ChatsState;
+}
+
+export const store = createStore(
+  combineReducers<StoreState>({ profile: profileReducer, chats: chatReducer }),
+  composeEnhancers()
+);

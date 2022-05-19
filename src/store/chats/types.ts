@@ -5,10 +5,7 @@ export type ChatsActions =
   | ReturnType<DeleteChat>
   | ReturnType<AddMessage>;
 
-export type AddChat = (
-  chatName: string,
-  chatId: string
-) => {
+export type AddChat = (chatName: string) => {
   type: typeof ADD_CHAT;
   chatId: string;
   chatName: string;

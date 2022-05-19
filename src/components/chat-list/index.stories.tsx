@@ -1,5 +1,4 @@
 import { ChatList } from '.';
-import { IShowChatListProps } from './interface';
 import { Story } from '@storybook/react';
 
 export default {
@@ -7,7 +6,7 @@ export default {
   component: ChatList,
 };
 
-const Template: Story<IShowChatListProps> = (args) => <ChatList {...args} />;
+const Template: Story = () => <ChatList />;
 
 export const Primary = Template.bind({});
 Primary.args = {

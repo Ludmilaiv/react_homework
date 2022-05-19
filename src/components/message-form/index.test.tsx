@@ -4,22 +4,19 @@ import '@testing-library/jest-dom';
 
 describe('MessageForm', () => {
   it('render component', () => {
-    const mockFunction = jest.fn();
-    render(<MessageForm addMessage={mockFunction} />);
+    render(<MessageForm />);
   });
 
   it('render with snapshot', () => {
-    const mockFunction = jest.fn();
-    const { asFragment } = render(<MessageForm addMessage={mockFunction} />);
+    const { asFragment } = render(<MessageForm />);
     expect(asFragment()).toMatchSnapshot();
   });
 
   it('render multiply components', () => {
-    const mockFunction = jest.fn();
     render(
       <>
-        <MessageForm addMessage={mockFunction} />
-        <MessageForm addMessage={mockFunction} />
+        <MessageForm />
+        <MessageForm />
       </>
     );
 
