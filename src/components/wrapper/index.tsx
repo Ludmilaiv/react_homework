@@ -20,6 +20,12 @@ const nav = [
     to: '/chats',
     name: 'Chats',
   },
+
+  {
+    id: 4,
+    to: '/about',
+    name: 'About',
+  },
 ];
 
 export const Wrapper: FC = () => (

@@ -29,34 +29,6 @@ export const ChatPage: FC = () => {
 
   const chats = useSelector(selectChats);
 
-  // useEffect(() => {
-  //   if (
-  //     !chatId ||
-  //     !messages[chatId] ||
-  //     messages[chatId].messages.length === 0 ||
-  //     messages[chatId].messages[0].author === AUTHOR.BOT
-  //   )
-  //     return;
-  //   const timeout = setTimeout(() => {
-  //     setMessages({
-  //       ...messages,
-  //       [chatId]: {
-  //         chatName: messages[chatId].chatName,
-  //         messages: [
-  //           {
-  //             authorName: 'bot',
-  //             author: AUTHOR.BOT,
-  //             text: `Привет, ${messages[chatId].messages[0].authorName}!`,
-  //             id: nanoid(),
-  //           },
-  //           ...messages[chatId].messages,
-  //         ],
-  //       },
-  //     });
-  //   }, 1500);
-  //   return () => clearTimeout(timeout);
-  // }, [messages, chatId]);
-
   if (chatId && !chats[chatId]) {
     return <Navigate replace to="/chats" />;
   }

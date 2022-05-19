@@ -8,6 +8,7 @@ import { Home } from './pages/Home';
 import { Profile } from './pages/Profile';
 import { defaultContext, ThemeContext } from './utils/ThemeContext';
 import { ChatPage } from './pages/ChatPage/ChatPage';
+import { AboutWithConnect } from './pages/About';
 
 export const App: FC = () => {
   const [theme, setTheme] = useState(defaultContext.theme);
@@ -34,6 +35,7 @@ export const App: FC = () => {
                   <Route index element={<ChatList />} />
                   <Route path=":chatId" element={<ChatPage />} />
                 </Route>
+                <Route path="about" element={<AboutWithConnect />} />
               </Route>
               <Route path="*" element={<h1>Error 404</h1>} />
             </Routes>

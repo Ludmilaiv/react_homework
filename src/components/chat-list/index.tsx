@@ -12,7 +12,10 @@ export const ChatList: FC = () => {
 
   const dispatch = useDispatch();
 
-  const chatList = useSelector(selectChatList);
+  const chatList = useSelector(
+    selectChatList,
+    (prev, next) => prev.length === next.length
+  );
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
