@@ -7,7 +7,7 @@ export interface ProfileState {
   name: string;
 }
 
-const initialState: ProfileState | undefined = {
+const initialState: ProfileState = {
   visible: true,
   name: 'default name',
 };
@@ -18,7 +18,6 @@ export const profileReducer: Reducer<ProfileState, ProfileActions> = (
 ) => {
   switch (action.type) {
     case TOGGLE_PROFILE: {
-      console.log(state.visible);
       return {
         ...state,
         visible: !state.visible,
