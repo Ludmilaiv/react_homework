@@ -1,15 +1,20 @@
 import { useState, memo } from 'react';
 import { useDispatch } from 'react-redux';
-import { addMessage } from '../../store/chats/actions';
+import { addMessageWithReply } from '../../store/chats/actions';
 import { Button } from './components/button';
 import { Input } from './components/input';
 import { useParams } from 'react-router-dom';
+import { AUTHOR } from '../../constants';
+import { ThunkDispatch } from 'redux-thunk';
+import { ChatsState } from '../../store/chats/reducer';
+import { AddMessage } from '../../store/chats/types';
 
 export const MessageForm = memo(() => {
   const [textValue, setTextValue] = useState('');
   const [author, setAuthor] = useState('');
 
-  const dispatch = useDispatch();
+  const dispatch =
+    useDispatch<ThunkDispatch<ChatsState, void, ReturnType<AddMessage>>>();
 
   const { chatId } = useParams();
 
@@ -19,9 +24,15 @@ export const MessageForm = memo(() => {
       role="form"
       action=""
       onSubmit={(e) => {
-        if (!chatId) return;
+        if (!chatId || !textValue) return;
         e.preventDefault();
-        dispatch(addMessage(chatId, textValue, author));
+        dispatch(
+          addMessageWithReply(chatId, {
+            text: textValue,
+            author: AUTHOR.USER,
+            authorName: author,
+          })
+        );
         setTextValue('');
         setAuthor('');
       }}
