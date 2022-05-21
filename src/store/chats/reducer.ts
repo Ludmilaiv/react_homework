@@ -61,9 +61,9 @@ export const chatReducer: Reducer<ChatsState, ChatsActions> = (
             ...state[action.chatId].messages,
             {
               id: nanoid(),
-              author: AUTHOR.USER,
-              authorName: action.authorName,
-              text: action.message,
+              author: action.message.author,
+              authorName: action.message.authorName,
+              text: action.message.text,
             },
           ],
         },
