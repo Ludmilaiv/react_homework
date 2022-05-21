@@ -1,4 +1,3 @@
-import { Dispatch } from 'redux';
 import { ADD_CHAT, ADD_MESSAGE, DELETE_CHAT } from './actions';
 
 export type ChatsActions =

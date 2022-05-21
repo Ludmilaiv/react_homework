@@ -1,9 +1,18 @@
-import { createStore, compose, combineReducers, applyMiddleware } from 'redux';
-import thunk from 'redux-thunk';
-import { persistStore, persistReducer } from 'redux-persist';
-import { chatReducer, ChatsState } from './chats/reducer';
-import { profileReducer, ProfileState } from './profile/reducer';
+import { compose, combineReducers } from 'redux';
 import storage from 'redux-persist/lib/storage';
+import {
+  persistStore,
+  persistReducer,
+  FLUSH,
+  REHYDRATE,
+  PAUSE,
+  PERSIST,
+  PURGE,
+  REGISTER,
+} from 'redux-persist';
+import { chatReducer } from './chats/reducer';
+import { configureStore } from '@reduxjs/toolkit';
+import { profileReducer } from './profile/slice';
 
 declare const window: Window &
   typeof globalThis & {
@@ -13,10 +22,7 @@ declare const window: Window &
 export const composeEnhancers =
   window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
-export interface StoreState {
-  profile: ProfileState;
-  chats: ChatsState;
-}
+export type StoreState = ReturnType<typeof rootReducer>;
 
 const persistConfig = {
   key: 'root',
@@ -24,16 +30,22 @@ const persistConfig = {
   blacklist: ['profile'],
 };
 
-const rootReducer = combineReducers<StoreState>({
+const rootReducer = combineReducers({
   profile: profileReducer,
   chats: chatReducer,
 });
 
-const persisteReducer = persistReducer(persistConfig, rootReducer);
+const persistedReducer = persistReducer(persistConfig, rootReducer);
 
-export const store = createStore(
-  persisteReducer,
-  composeEnhancers(applyMiddleware(thunk))
-);
+export const store = configureStore({
+  reducer: persistedReducer,
+  devTools: process.env.NODE_ENV !== 'production',
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({
+      serializableCheck: {
+        ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+      },
+    }),
+});
 
 export const persistor = persistStore(store);
