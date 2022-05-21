@@ -8,8 +8,12 @@ const isDev = process.env.NODE_ENV === 'development';
 module.exports = {
   entry: path.resolve(__dirname, './src/index.tsx'),
   output: {
-    filename: 'bundle.js',
+    filename: '[name].bundle.[chunkhash].js',
+    clean: true,
     path: path.resolve(__dirname, './build'),
+    environment: {
+      arrowFunction: false,
+    },
   },
   resolve: {
     extensions: ['.jsx', '.js', '.tsx', '.ts'],

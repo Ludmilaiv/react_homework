@@ -1,12 +1,17 @@
 import { useState, memo } from 'react';
-import { IMessageFormProps } from './interface';
-import { AUTHOR } from '../../constants';
+import { useDispatch } from 'react-redux';
+import { addMessage } from '../../store/chats/actions';
 import { Button } from './components/button';
 import { Input } from './components/input';
+import { useParams } from 'react-router-dom';
 
-export const MessageForm = memo<IMessageFormProps>(({ addMessage }) => {
+export const MessageForm = memo(() => {
   const [textValue, setTextValue] = useState('');
   const [author, setAuthor] = useState('');
+
+  const dispatch = useDispatch();
+
+  const { chatId } = useParams();
 
   return (
     <form
@@ -14,8 +19,9 @@ export const MessageForm = memo<IMessageFormProps>(({ addMessage }) => {
       role="form"
       action=""
       onSubmit={(e) => {
+        if (!chatId) return;
         e.preventDefault();
-        addMessage(textValue, AUTHOR.USER, author);
+        dispatch(addMessage(chatId, textValue, author));
         setTextValue('');
         setAuthor('');
       }}
